@@ -93,6 +93,28 @@ class Document(ElementProxy):
         table.style = style
         return table
 
+    def replace_word(self, old_value, new_value):
+        for paragraph in self.paragraphs:
+            paragraph.text = paragraph.text.replace(old_value, new_value)
+
+    def count_char(self):
+        count = 0
+        for paragraph in self.paragraphs:
+            count += len(paragraph.text)
+        return count
+
+    def count_word(self):
+        count = 0
+        for paragraph in self.paragraphs:
+            count += len(paragraph.text.split())
+        return count
+
+    def count_no_space(self):
+        count = 0
+        for paragraph in self.paragraphs:
+            count += len("".join(paragraph.text.split()))
+        return count
+
     @property
     def core_properties(self):
         """
